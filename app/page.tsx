@@ -1,12 +1,15 @@
 "use client"
 
-import { ReactNode, useEffect, useRef, useState } from "react"
+import React, { ReactNode, useEffect, useRef, useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
-import image from "@/public/background2.webp"
+import aboutMeImage from "@/public/background3.webp"
+import image from "@/public/background4.jpg"
 import {
   AnimatePresence,
   AnimationProps,
+  ForwardRefComponent,
+  HTMLMotionProps,
   Variant,
   Variants,
   motion,
@@ -15,6 +18,7 @@ import {
 } from "framer-motion"
 import { ArrowRight } from "lucide-react"
 
+import { cn } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { SparklesCore } from "@/components/particles/particles"
@@ -22,23 +26,21 @@ import { ReactSvg, StarsSvg } from "@/components/svgs"
 
 export default function IndexPage() {
   const container = useRef<HTMLDivElement>(null)
-  const { scrollYProgress, scrollY } = useScroll({
+  const { scrollYProgress } = useScroll({
     target: container,
     offset: ["start start", "end start"],
   })
 
   const y = useTransform(scrollYProgress, (value) => `${value * 40}%`)
-  const filter = useTransform(
-    scrollYProgress,
-    (v) => `blur(${-4 + 1 * 10 - v * 10}px)`
-  )
+  const ySpeed1 = useTransform(scrollYProgress, (value) => `${value * 30}%`)
+  const filter = useTransform(scrollYProgress, (v) => `blur(${v * 5 - 2}px)`)
 
   const section3Container = useRef<HTMLDivElement>(null)
   const values3 = useScroll({
     target: section3Container,
     offset: ["start end", "start start"],
   })
-  const y3 = useTransform(values3.scrollYProgress, [0, 0.5, 1], [0, 0, -800])
+  const y3 = useTransform(values3.scrollYProgress, [0, 1], [0, 100])
   const containerY3 = useTransform(
     values3.scrollYProgress,
     [0, 0.6, 1],
@@ -46,16 +48,43 @@ export default function IndexPage() {
   )
   const opacity3 = useTransform(values3.scrollYProgress, [0, 0.8, 1], [0, 1, 1])
 
+  const section4Container = useRef<HTMLDivElement>(null)
+  const values4 = useScroll({
+    target: section4Container,
+    offset: ["start end", "end start"],
+  })
+  const y4 = useTransform(values4.scrollYProgress, [0, 1], [0, 200])
+
+  useEffect(() => {
+    window.addEventListener("scroll", () => {
+      const scrollPosition = -window.scrollY
+      document.documentElement.style.setProperty(
+        "--scroll-position",
+        `${scrollPosition}px`
+      )
+    })
+  }, [])
+
   return (
     <div className="flex flex-col gap-lg">
-      <section className="gap-y-md relative h-[100vh] flex items-center">
-        <div ref={container} className="h-full w-full absolute -z-10">
+      <section className="gap-y-md relative md:h-[100vh] flex items-center flex-col md:flex-row">
+        {/* <div className="z-10 absolute w-full h-full">
+          <Ball
+            className="absolute left-[50%] top-[38%]"
+            style={{ y: ySpeed1 }}
+          />
+          <Ball className="absolute left-[40%] top-[50%] bg-orange-300" />
+        </div> */}
+        <div
+          ref={container}
+          className="h-60 md:h-full w-full relative md:absolute z-10"
+        >
           <motion.div
-            style={{ y: y }}
+            style={{ y: y, filter: filter }}
             className="absolute inset-0 overflow-hidden md:px-md md:pb-md "
           >
             <Image
-              className="w-full h-full rounded-b-[4rem]"
+              className="w-full md:h-full rounded-b-[4rem]"
               alt="image"
               src={image}
               width={5000}
@@ -63,7 +92,6 @@ export default function IndexPage() {
               style={{
                 objectFit: "cover",
                 objectPosition: "top right",
-                //transform: "scale(1.5) translate(15%, 9rem)",
               }}
             />
           </motion.div>
@@ -73,52 +101,78 @@ export default function IndexPage() {
             particleDensity={10}
           /> */}
         </div>
-        <div className="md:px-lg pb-lg md:m-0 m-auto text-center md:text-left">
+        <div className="md:px-lg md:pb-lg pb-0 md:m-0 m-auto text-center md:text-left z-20">
           <h1 className="text-image-foreground">Nils Pettersson</h1>
           <h2 className="text-image-foreground">FRONTEND DEVELOPER</h2>
         </div>
       </section>
 
-      <section className="flex flex-col py-2 px-xs sm:px-lg -mt-12 w-full">
-        <h1 className="text-center md:ml-auto md:text-end text-foreground">
+      <section className=" bg-background flex flex-col py-2 px-xs sm:px-lg w-full text-center">
+        <h1 className="z-20 md:ml-auto md:text-end text-foreground">
           Residing in Sweden
         </h1>
-        <h1 className="text-center md:ml-auto md:text-end text-foreground">
+        <h1 className="z-20 md:ml-auto md:text-end text-foreground">
           I do frontend and backend
         </h1>
         <div className="flex items-center md:ml-auto justify-center gap-xs">
           <span className="text-[2rem] sm:text-[3rem]">💕</span>
-          <h1 className="text-blue-400 text-center  md:text-end text-accent-foreground/80">
+          <h1 className="text-blue-400 md:text-end text-accent-foreground/80">
             React
           </h1>
           <ReactSvg className="text-blue-400 w-16 sm:w-24" />
         </div>
       </section>
-      <section></section>
 
-      <motion.section
-        ref={section3Container}
-        style={{ opacity: opacity3 }}
-        className="relativ h-[30rem]"
+      <section
+        ref={section4Container}
+        className="w-full h-[80vh] px-md relative overflow-hidden"
       >
+        <motion.div style={{ y: y4 }} className="absolute inset-0 -z-10">
+          <Image
+            className="w-full md:h-full brightness-75"
+            alt="image"
+            src={aboutMeImage}
+            width={5000}
+            height={5000}
+            style={{
+              objectFit: "cover",
+              objectPosition: "center right",
+              transform: "scale(1.3) translateX(-1rem)",
+            }}
+          />
+        </motion.div>
+
+        <div>
+          <p className="w-full py-md">
+            I am a passionate frontend web developer, specializing in creating
+            captivating user experiences using React. Proficient in both backend
+            and frontend development, I thrive in collaborative team
+            environments with a strong emphasis on agile development
+            methodologies. My commitment to problem-solving and tackling complex
+            tasks has been a driving force in my journey. I consistently
+            demonstrate a passion for overcoming challenges, coupled with my
+            proficiency in crafting seamless user interfaces. This commitment
+            underscores my dedication to delivering high-quality web solutions
+          </p>
+        </div>
+      </section>
+
+      <motion.section ref={section3Container}>
         <motion.div
           style={{ scale: containerY3 }}
           className="mx-md overflow-hidden border border-foreground p-md rounded-3xl"
         >
-          <motion.div>
-            <p className="w-full">
-              I am a passionate frontend web developer, specializing in creating
-              captivating user experiences using React. Proficient in both
-              backend and frontend development, I thrive in collaborative team
-              environments with a strong emphasis on agile development
-              methodologies. My commitment to problem-solving and tackling
-              complex tasks has been a driving force in my journey. I
-              consistently demonstrate a passion for overcoming challenges,
-              coupled with my proficiency in crafting seamless user interfaces.
-              This commitment underscores my dedication to delivering
-              high-quality web solutions
-            </p>
-          </motion.div>
+          <p className="w-full">
+            I am a passionate frontend web developer, specializing in creating
+            captivating user experiences using React. Proficient in both backend
+            and frontend development, I thrive in collaborative team
+            environments with a strong emphasis on agile development
+            methodologies. My commitment to problem-solving and tackling complex
+            tasks has been a driving force in my journey. I consistently
+            demonstrate a passion for overcoming challenges, coupled with my
+            proficiency in crafting seamless user interfaces. This commitment
+            underscores my dedication to delivering high-quality web solutions
+          </p>
         </motion.div>
       </motion.section>
       <section></section>
@@ -209,3 +263,15 @@ const animations = {
     hidden: { opacity: 0, translateY: "0px" },
   },
 } as const
+
+function Ball({ className, ...props }: HTMLMotionProps<"div">) {
+  return (
+    <motion.div
+      {...props}
+      className={cn(
+        "blur-2xl rounded-full size-64 bg-orange-400 mix-blend-soft-light opacity-80",
+        className
+      )}
+    />
+  )
+}
