@@ -77,12 +77,21 @@ export default function IndexPage() {
   )
 
   useEffect(() => {
+    let addedBackground = false
     window.addEventListener("scroll", () => {
       const scrollPosition = -window.scrollY
       document.documentElement.style.setProperty(
         "--scroll-position",
         `${scrollPosition}px`
       )
+
+      if (!addedBackground && scrollPosition < -100) {
+        addedBackground = true
+        document.querySelector("header")?.classList.add("bg-background")
+      } else if (addedBackground && scrollPosition > -100) {
+        addedBackground = false
+        document.querySelector("header")?.classList.remove("bg-background")
+      }
     })
   }, [])
 
@@ -105,7 +114,11 @@ export default function IndexPage() {
         <div ref={container} className="p-lg h-full w-full relative z-10">
           <div className="relative px-md  pb-md pt-sm backdrop-blur-[60px] rounded-[3rem] bg-background/10 border-2 border-background">
             <div className="grid grid-cols-[1.5fr_1fr]">
-              <div className="text-center md:text-left">
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="text-center md:text-left"
+              >
                 <h1>Nils Pettersson.</h1>
                 <h2 className="text-transparent w-fit bg-clip-text bg-gradient-to-r from-primary to-secondary">
                   full stack developer
@@ -125,7 +138,7 @@ export default function IndexPage() {
                     solutions and bringing ideas to life through code.
                   </h3>
                 </div>
-              </div>
+              </motion.div>
               <div></div>
             </div>
           </div>
@@ -135,7 +148,11 @@ export default function IndexPage() {
             </h1>
           </div>
         </div>
-        <div className="absolute max-h-[80rem] bottom-0 right-md z-10 pt-md mr-lg">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          className="absolute max-h-[80rem] bottom-0 right-md z-10 pt-md mr-lg"
+        >
           <Image
             className="w-full h-full"
             alt="image"
@@ -148,7 +165,7 @@ export default function IndexPage() {
               transform: "scale(1) translateX(0)",
             }}
           />
-        </div>
+        </motion.div>
       </section>
       <motion.section
         ref={section2Container}
@@ -157,7 +174,7 @@ export default function IndexPage() {
       >
         <motion.div className="flex justify-between pb-[16rem]">
           <motion.h1
-            style={{ x: section2X, y: -200, opacity: section2Opacity }}
+            style={{ x: 0, y: -200, opacity: section2Opacity }}
             className="leading-none mt-auto text-foreground/20 text-[24rem] pl-lg"
           >
             skills.
