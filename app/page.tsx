@@ -9,7 +9,6 @@ import meImage from "@/public/me.png"
 import {
   AnimatePresence,
   AnimationProps,
-  ForwardRefComponent,
   HTMLMotionProps,
   Variant,
   Variants,
@@ -17,18 +16,20 @@ import {
   useScroll,
   useTransform,
 } from "framer-motion"
-import { Linkedin, LinkedinIcon, LucideLinkedin, Phone } from "lucide-react"
+import {
+  Linkedin,
+  LinkedinIcon,
+  LucideLinkedin,
+  MessageCircle,
+  Phone,
+} from "lucide-react"
 
 import { cn } from "@/lib/utils"
 import {
-  BlueSvg,
   DownArrowSvg,
   Gradient1Svg,
   Gradient2Svg,
   OrangeSvg,
-  ReactSvg,
-  RedSvg,
-  StarsSvg,
 } from "@/components/svgs"
 
 export default function IndexPage() {
@@ -38,7 +39,7 @@ export default function IndexPage() {
     offset: ["start start", "end start"],
   })
 
-  const y = useTransform(scrollYProgress, (value) => `${value * 40}%`)
+  /*const y = useTransform(scrollYProgress, (value) => `${value * 40}%`)
   const ySpeed1 = useTransform(scrollYProgress, (value) => `${value * 30}%`)
   const filter = useTransform(scrollYProgress, (v) => `blur(${v * 5 - 2}px)`)
 
@@ -60,7 +61,20 @@ export default function IndexPage() {
     target: section4Container,
     offset: ["start end", "end start"],
   })
-  const y4 = useTransform(values4.scrollYProgress, [0, 1], [0, 200])
+  const y4 = useTransform(values4.scrollYProgress, [0, 1], [0, 200])*/
+
+  const section2Container = useRef<HTMLDivElement>(null)
+  const values2 = useScroll({
+    target: section2Container,
+    offset: ["start end", "start start"],
+  })
+  const section2Y = useTransform(values2.scrollYProgress, [0, 1], [0, -200])
+  const section2X = useTransform(values2.scrollYProgress, [0, 1], [-600, 0])
+  const section2Opacity = useTransform(
+    values2.scrollYProgress,
+    [0, 0.5, 1],
+    [0, 0, 1]
+  )
 
   useEffect(() => {
     window.addEventListener("scroll", () => {
@@ -101,6 +115,7 @@ export default function IndexPage() {
                   <div className="flex gap-sm flex-col items-center pt-xs">
                     <Linkedin fill="currentColor" stroke="transparent" />
                     <Phone fill="currentColor" stroke="transparent" />
+                    <MessageCircle fill="currentColor" stroke="transparent" />
                     <Link href={"#section-2"} className="mt-auto">
                       <DownArrowSvg className="animate-pulse" />
                     </Link>
@@ -135,76 +150,38 @@ export default function IndexPage() {
           />
         </div>
       </section>
-
-      {/* <section className="dark bg-background flex flex-col py-2 px-xs sm:px-lg w-full text-center">
-        <h1 className="z-20 md:ml-auto md:text-end text-foreground">
-          Residing in Sweden
-        </h1>
-        <h1 className="z-20 md:ml-auto md:text-end text-foreground">
-          I do frontend and backend
-        </h1>
-        <div className="flex items-center md:ml-auto justify-center gap-xs">
-          <span className="text-[2rem] sm:text-[3rem]">💕</span>
-          <h1 className="text-blue-400 md:text-end text-accent-foreground/80">
-            React
-          </h1>
-          <ReactSvg className="text-blue-400 w-16 sm:w-24" />
-        </div>
-      </section> */}
-
-      {/* <section
-        ref={section4Container}
-        className="w-full h-[80vh] px-md relative overflow-hidden"
+      <motion.section
+        ref={section2Container}
+        id="section-2"
+        className="grid grid-cols-[1fr_auto] items-center  dark bg-background py-lg"
       >
-        <motion.div style={{ y: y4 }} className="absolute inset-0 -z-10">
-          <Image
-            className="w-full md:h-full brightness-75"
-            alt="image"
-            src={aboutMeImage}
-            width={5000}
-            height={5000}
-            style={{
-              objectFit: "cover",
-              objectPosition: "center right",
-              transform: "scale(1.3) translateX(-1rem)",
-            }}
-          />
+        <motion.div className="flex justify-between pb-[16rem]">
+          <motion.h1
+            style={{ x: section2X, y: -200, opacity: section2Opacity }}
+            className="leading-none mt-auto text-foreground/20 text-[24rem] pl-lg"
+          >
+            skills.
+          </motion.h1>
+          <motion.div
+            style={{ y: section2Y }}
+            className="flex flex-col gap-xs text-foreground text-right pr-md"
+          >
+            <h2>HTML</h2>
+            <h2>CSS</h2>
+            <h2>TypeScript</h2>
+            <h2>Delphi</h2>
+            <h2>C#</h2>
+            <h2>C++</h2>
+            <h2>Java</h2>
+            <h2>SQL</h2>
+          </motion.div>
         </motion.div>
 
-        <div>
-          <p className="w-full py-md">
-            I am a passionate frontend web developer, specializing in creating
-            captivating user experiences using React. Proficient in both backend
-            and frontend development, I thrive in collaborative team
-            environments with a strong emphasis on agile development
-            methodologies. My commitment to problem-solving and tackling complex
-            tasks has been a driving force in my journey. I consistently
-            demonstrate a passion for overcoming challenges, coupled with my
-            proficiency in crafting seamless user interfaces. This commitment
-            underscores my dedication to delivering high-quality web solutions
-          </p>
-        </div>
-      </section> */}
-
-      {/* <motion.section ref={section3Container}>
         <motion.div
-          style={{ scale: containerY3 }}
-          className="mx-md overflow-hidden border border-foreground p-md rounded-3xl"
-        >
-          <p className="w-full">
-            I am a passionate frontend web developer, specializing in creating
-            captivating user experiences using React. Proficient in both backend
-            and frontend development, I thrive in collaborative team
-            environments with a strong emphasis on agile development
-            methodologies. My commitment to problem-solving and tackling complex
-            tasks has been a driving force in my journey. I consistently
-            demonstrate a passion for overcoming challenges, coupled with my
-            proficiency in crafting seamless user interfaces. This commitment
-            underscores my dedication to delivering high-quality web solutions
-          </p>
-        </motion.div>
-      </motion.section> */}
-      <section id="section-2" className="dark bg-background py-lg"></section>
+          style={{ y: section2Y }}
+          className="bg-background border-2 border-foreground w-lg h-[86rem] rounded-l-[3rem]"
+        />
+      </motion.section>
     </div>
   )
 }
