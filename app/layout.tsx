@@ -53,9 +53,9 @@ export default function RootLayout({ children }: RootLayoutProps) {
             fontSans.variable
           )}
         >
-          <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+          <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
             <div className="min-h-screen h-full">
-              {/* <header className="fixed flex w-full z-50 p-xs px-md bg-background/40 backdrop-blur-md border-b border-background/10 shadow-lg shadow-foreground/10">
+              <header className="fixed flex w-full z-50 p-xs px-md bg-background/40 backdrop-blur-md border-b border-background/10 shadow-lg shadow-foreground/10">
                 <div className="flex ml-auto gap-xs">
                   <Link className="text-lg hover:text-primary" href={"#"}>
                     Home
@@ -67,7 +67,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
                     Projects
                   </Link>
                 </div>
-              </header> */}
+              </header>
               <div id="main" className="flex-1">
                 {children}
               </div>

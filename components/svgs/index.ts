@@ -1,2 +1,8 @@
 export { default as StarsSvg } from "./stars.svg"
 export { default as ReactSvg } from "./react.svg"
+export { default as Gradient1Svg } from "./gradient1.svg"
+export { default as Gradient2Svg } from "./gradient2.svg"
+export { default as DownArrowSvg } from "./down_arrow.svg"
+export { default as BlueSvg } from "./blue.svg"
+export { default as OrangeSvg } from "./orange.svg"
+export { default as RedSvg } from "./red.svg"

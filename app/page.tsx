@@ -5,6 +5,7 @@ import Image from "next/image"
 import Link from "next/link"
 import aboutMeImage from "@/public/background3.webp"
 import image from "@/public/background4.jpg"
+import meImage from "@/public/nils_photo.png"
 import {
   AnimatePresence,
   AnimationProps,
@@ -22,7 +23,13 @@ import { cn } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { SparklesCore } from "@/components/particles/particles"
-import { ReactSvg, StarsSvg } from "@/components/svgs"
+import {
+  DownArrowSvg,
+  Gradient1Svg,
+  Gradient2Svg,
+  ReactSvg,
+  StarsSvg,
+} from "@/components/svgs"
 
 export default function IndexPage() {
   const container = useRef<HTMLDivElement>(null)
@@ -66,8 +73,8 @@ export default function IndexPage() {
   }, [])
 
   return (
-    <div className="flex flex-col gap-lg">
-      <section className="gap-y-md relative md:h-[100vh] flex items-center flex-col md:flex-row">
+    <div className="flex flex-col">
+      <section className="gap-y-md relative md:min-h-[62rem] flex items-center flex-col md:flex-row">
         {/* <div className="z-10 absolute w-full h-full">
           <Ball
             className="absolute left-[50%] top-[38%]"
@@ -75,39 +82,45 @@ export default function IndexPage() {
           />
           <Ball className="absolute left-[40%] top-[50%] bg-orange-300" />
         </div> */}
-        <div
-          ref={container}
-          className="h-60 md:h-full w-full relative md:absolute z-10"
-        >
-          <motion.div
-            style={{ y: y, filter: filter }}
-            className="absolute inset-0 overflow-hidden md:px-md md:pb-md "
-          >
-            <Image
-              className="w-full md:h-full rounded-b-[4rem]"
-              alt="image"
-              src={image}
-              width={5000}
-              height={5000}
-              style={{
-                objectFit: "cover",
-                objectPosition: "top right",
-              }}
-            />
-          </motion.div>
-
-          {/* <SparklesCore
-            className="h-full w-full absolute inset-0"
-            particleDensity={10}
-          /> */}
+        <Gradient1Svg className="absolute top-0 right-0 -z-10" />
+        <Gradient2Svg className="absolute -z-10 bottom-0 size-[40rem]" />
+        <div ref={container} className="p-lg h-full w-full relative z-10">
+          <div className="relative px-md py-md">
+            <div className="absolute inset-0 bg-background/10 backdrop-blur-3xl h-full rounded-[4rem] shadow-[0_0_0px_20px border border-background -z-10" />
+            <div className="grid grid-cols-2">
+              <div className="text-center md:text-left">
+                <h1>Nils Pettersson.</h1>
+                <h2 className="text-transparent w-fit bg-clip-text bg-gradient-to-r from-primary to-secondary">
+                  full stack developer
+                </h2>
+                <h4>based in Sweden</h4>
+                <h3 className="text-muted-foreground font-normal font-serif pt-md max-w-[34rem] pb-sm">
+                  Passionate developer with a knack for crafting innovative
+                  solutions and bringing ideas to life through code.
+                </h3>
+                <DownArrowSvg />
+              </div>
+              <div></div>
+            </div>
+          </div>
         </div>
-        <div className="md:px-lg md:pb-lg pb-0 md:m-0 m-auto text-center md:text-left z-20">
-          <h1 className="text-image-foreground">Nils Pettersson</h1>
-          <h2 className="text-image-foreground">FRONTEND DEVELOPER</h2>
+        <div className="absolute max-h-[80rem] bottom-0 top-md right-0 z-10 pt-md mr-lg pr-0">
+          <Image
+            className="w-full h-full"
+            alt="image"
+            src={meImage}
+            width={2400}
+            height={2400}
+            style={{
+              objectFit: "cover",
+              objectPosition: "center right",
+              transform: "scale(1) translateX(0)",
+            }}
+          />
         </div>
       </section>
 
-      <section className=" bg-background flex flex-col py-2 px-xs sm:px-lg w-full text-center">
+      {/* <section className="dark bg-background flex flex-col py-2 px-xs sm:px-lg w-full text-center">
         <h1 className="z-20 md:ml-auto md:text-end text-foreground">
           Residing in Sweden
         </h1>
@@ -121,9 +134,9 @@ export default function IndexPage() {
           </h1>
           <ReactSvg className="text-blue-400 w-16 sm:w-24" />
         </div>
-      </section>
+      </section> */}
 
-      <section
+      {/* <section
         ref={section4Container}
         className="w-full h-[80vh] px-md relative overflow-hidden"
       >
@@ -155,9 +168,9 @@ export default function IndexPage() {
             underscores my dedication to delivering high-quality web solutions
           </p>
         </div>
-      </section>
+      </section> */}
 
-      <motion.section ref={section3Container}>
+      {/* <motion.section ref={section3Container}>
         <motion.div
           style={{ scale: containerY3 }}
           className="mx-md overflow-hidden border border-foreground p-md rounded-3xl"
@@ -174,14 +187,8 @@ export default function IndexPage() {
             underscores my dedication to delivering high-quality web solutions
           </p>
         </motion.div>
-      </motion.section>
-      <section></section>
-      <section></section>
-      <section></section>
-      <section></section>
-      <section></section>
-      <section></section>
-      <section></section>
+      </motion.section> */}
+      <section className="dark bg-background py-lg"></section>
     </div>
   )
 }
