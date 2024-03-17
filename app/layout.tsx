@@ -55,16 +55,19 @@ export default function RootLayout({ children }: RootLayoutProps) {
         >
           <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
             <div className="min-h-screen h-full">
-              <header className="fixed flex w-full z-50 p-xs px-md bg-background/40 backdrop-blur-md border-b border-background/10 shadow-lg shadow-foreground/10">
-                <div className="flex ml-auto gap-xs">
-                  <Link className="text-lg hover:text-primary" href={"#"}>
-                    Home
+              <header className="fixed flex w-full z-50 p-xs px-lg">
+                <div className="flex ml-auto gap-md">
+                  <Link className="text-xl hover:text-primary" href={"#"}>
+                    skills.
                   </Link>
                   <Link className="text-lg hover:text-primary" href={"#"}>
-                    About
+                    about me.
                   </Link>
-                  <Link className="text-lg hover:text-primary" href={"#"}>
-                    Projects
+                  <Link className="text-xl hover:text-primary" href={"#"}>
+                    projects.
+                  </Link>
+                  <Link className="text-xl hover:text-primary" href={"#"}>
+                    contacts
                   </Link>
                 </div>
               </header>
