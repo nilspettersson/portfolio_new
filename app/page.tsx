@@ -76,14 +76,24 @@ export default function IndexPage() {
     [0, 0, 1]
   )
 
+  const section3Container = useRef<HTMLDivElement>(null)
+  const values3 = useScroll({
+    target: section3Container,
+    offset: ["start end", "end start"],
+  })
+
+  const section3X1 = useTransform(values3.scrollYProgress, [0, 1], [-100, 100])
+  const section3X2 = useTransform(values3.scrollYProgress, [0, 1], [100, -100])
+  const section3X3 = useTransform(values3.scrollYProgress, [0, 1], [-100, 100])
+
   useEffect(() => {
     let addedBackground = false
     window.addEventListener("scroll", () => {
       const scrollPosition = -window.scrollY
-      document.documentElement.style.setProperty(
+      /*document.documentElement.style.setProperty(
         "--scroll-position",
         `${scrollPosition}px`
-      )
+      )*/
 
       if (!addedBackground && scrollPosition < -100) {
         addedBackground = true
@@ -170,7 +180,7 @@ export default function IndexPage() {
       <motion.section
         ref={section2Container}
         id="section-2"
-        className="grid grid-cols-[1fr_auto] items-center  dark bg-background py-lg"
+        className="grid grid-cols-[1fr_auto] items-center  dark bg-background py-lg pb-0"
       >
         <motion.div className="flex justify-between pb-[16rem]">
           <motion.h1
@@ -196,9 +206,35 @@ export default function IndexPage() {
 
         <motion.div
           style={{ y: section2Y }}
-          className="bg-background border-2 border-foreground w-lg h-[86rem] rounded-l-[3rem]"
+          className="bg-background border-2 border-foreground w-lg h-[68rem] rounded-l-[3rem]"
         />
       </motion.section>
+
+      <motion.section
+        ref={section3Container}
+        id="section-2"
+        className="flex flex-col items-center dark bg-background py-lg"
+      >
+        <motion.h1
+          style={{ x: section3X1 }}
+          className="mr-auto text-primary text-[7.8vw] whitespace-nowrap leading-none"
+        >
+          Full Stack Development.
+        </motion.h1>
+        <motion.h1
+          style={{ x: section3X2 }}
+          className="ml-auto text-secondary text-[7.8vw] whitespace-nowrap leading-none"
+        >
+          Software Development.
+        </motion.h1>
+        <motion.h1
+          style={{ x: section3X3 }}
+          className="text-foreground text-[8vw] whitespace-nowrap leading-none"
+        >
+          App Development.
+        </motion.h1>
+      </motion.section>
+      <div className="pt-[100rem]"></div>
     </div>
   )
 }
