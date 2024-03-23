@@ -3,9 +3,7 @@
 import React, { ReactNode, useEffect, useRef, useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
-import aboutMeImage from "@/public/background3.webp"
-import image from "@/public/background4.jpg"
-import meImage from "@/public/me.png"
+import meImage from "@/public/illustration.webp"
 import {
   AnimatePresence,
   AnimationProps,
@@ -16,13 +14,7 @@ import {
   useScroll,
   useTransform,
 } from "framer-motion"
-import {
-  Linkedin,
-  LinkedinIcon,
-  LucideLinkedin,
-  MessageCircle,
-  Phone,
-} from "lucide-react"
+import { Linkedin, MessageCircle, Phone } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 import {
@@ -39,37 +31,12 @@ export default function IndexPage() {
     offset: ["start start", "end start"],
   })
 
-  /*const y = useTransform(scrollYProgress, (value) => `${value * 40}%`)
-  const ySpeed1 = useTransform(scrollYProgress, (value) => `${value * 30}%`)
-  const filter = useTransform(scrollYProgress, (v) => `blur(${v * 5 - 2}px)`)
-
-  const section3Container = useRef<HTMLDivElement>(null)
-  const values3 = useScroll({
-    target: section3Container,
-    offset: ["start end", "start start"],
-  })
-  const y3 = useTransform(values3.scrollYProgress, [0, 1], [0, 100])
-  const containerY3 = useTransform(
-    values3.scrollYProgress,
-    [0, 0.6, 1],
-    [0.8, 1, 1]
-  )
-  const opacity3 = useTransform(values3.scrollYProgress, [0, 0.8, 1], [0, 1, 1])
-
-  const section4Container = useRef<HTMLDivElement>(null)
-  const values4 = useScroll({
-    target: section4Container,
-    offset: ["start end", "end start"],
-  })
-  const y4 = useTransform(values4.scrollYProgress, [0, 1], [0, 200])*/
-
   const section2Container = useRef<HTMLDivElement>(null)
   const values2 = useScroll({
     target: section2Container,
     offset: ["start end", "start start"],
   })
   const section2Y = useTransform(values2.scrollYProgress, [0, 1], [0, -200])
-  const section2X = useTransform(values2.scrollYProgress, [0, 1], [-600, 0])
   const section2Opacity = useTransform(
     values2.scrollYProgress,
     [0, 0.5, 1],
@@ -115,14 +82,14 @@ export default function IndexPage() {
           />
           <Ball className="absolute left-[40%] top-[50%] bg-orange-300" />
         </div> */}
-        <Gradient1Svg className="absolute top-0 right-0 -z-10" />
+        <Gradient1Svg className="absolute top-0 right-0 -z-10 size-[39rem]" />
 
         <Gradient2Svg className="absolute -z-10 bottom-0 size-[40rem]" />
         {/* <RedSvg className="absolute bottom-0 right-1 -z-10" /> */}
         {/* <BlueSvg className="absolute -z-10 -bottom-[28rem] right-60 size-[40rem]" /> */}
-        <OrangeSvg className="absolute -z-10 -bottom-[10rem] right-[22rem] size-[40rem]" />
+        {/* <OrangeSvg className="absolute -z-10 -bottom-[10rem] right-[22rem] size-[40rem]" /> */}
         <div ref={container} className="p-lg h-full w-full relative z-10">
-          <div className="relative px-md  pb-md pt-sm backdrop-blur-[60px] rounded-[3rem] bg-background/10 border-2 border-background">
+          <div className="relative px-md pt-md backdrop-blur-[60px] rounded-[3rem] bg-background/10 border-2 border-background">
             <div className="grid grid-cols-[1.5fr_1fr]">
               <motion.div
                 initial={{ opacity: 0 }}
@@ -133,18 +100,30 @@ export default function IndexPage() {
                 <h2 className="text-transparent w-fit bg-clip-text bg-gradient-to-r from-primary to-secondary">
                   full stack developer
                 </h2>
-                <h4>based in Sweden</h4>
+                <h4 className="text-muted-foreground">based in Sweden</h4>
                 <div className="grid grid-cols-[auto_1fr] pb-md pt-lg">
                   <div className="flex gap-sm flex-col items-center pt-xs">
-                    <Linkedin fill="currentColor" stroke="transparent" />
-                    <Phone fill="currentColor" stroke="transparent" />
-                    <MessageCircle fill="currentColor" stroke="transparent" />
+                    <Linkedin
+                      fill="currentColor"
+                      stroke="transparent"
+                      className="size-5"
+                    />
+                    <Phone
+                      fill="currentColor"
+                      stroke="transparent"
+                      className="size-5"
+                    />
+                    <MessageCircle
+                      fill="currentColor"
+                      stroke="transparent"
+                      className="size-5"
+                    />
                     <Link href={"#section-2"} className="mt-auto">
                       <DownArrowSvg className="animate-pulse" />
                     </Link>
                   </div>
                   <h3 className="text-muted-foreground font-normal font-serif max-w-[25rem] ml-auto">
-                    passionate developer with a knack for crafting innovative
+                    a passionate developer with a knack for crafting innovative
                     solutions and bringing ideas to life through code.
                   </h3>
                 </div>
@@ -152,23 +131,23 @@ export default function IndexPage() {
               <div></div>
             </div>
           </div>
-          <div className="-z-10 absolute top-[26rem] right-[42rem] w-[40rem] h-[42rem] -rotate-[45deg] backdrop-blur-[80px] rounded-[8rem] bg-background/10 border-2 border-background">
+          {/* <div className="-z-10 absolute top-[26rem] right-[42rem] w-[40rem] h-[42rem] -rotate-[45deg] backdrop-blur-[80px] rounded-[8rem] bg-background/10 border-2 border-background">
             <h1 className="absolute bottom-16 left-12 rotate-45 text-foreground/40">
               {"</>"}
             </h1>
-          </div>
+          </div> */}
         </div>
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
-          className="absolute max-h-[80rem] bottom-0 right-md z-10 pt-md mr-lg"
+          className="absolute max-h-[80rem] bottom-0 top-sm right-md z-10 pt-md mr-lg mix-blend-luminosity"
         >
           <Image
             className="w-full h-full"
             alt="image"
             src={meImage}
-            width={2400}
-            height={2400}
+            width={2500}
+            height={2500}
             style={{
               objectFit: "cover",
               objectPosition: "center right",
@@ -213,7 +192,7 @@ export default function IndexPage() {
       <motion.section
         ref={section3Container}
         id="section-2"
-        className="flex flex-col items-center dark bg-background py-lg"
+        className="flex flex-col items-center dark bg-background py-lg pt-0 overflow-hidden"
       >
         <motion.h1
           style={{ x: section3X1 }}

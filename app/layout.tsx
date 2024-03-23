@@ -8,6 +8,7 @@ import { siteConfig } from "@/config/site"
 import { fontSans } from "@/lib/fonts"
 import { cn } from "@/lib/utils"
 import { SiteHeader } from "@/components/site-header"
+import { NpSvg } from "@/components/svgs"
 import { TailwindIndicator } from "@/components/tailwind-indicator"
 import { ThemeProvider } from "@/components/theme-provider"
 
@@ -56,8 +57,9 @@ export default function RootLayout({ children }: RootLayoutProps) {
         >
           <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
             <div className="min-h-screen h-full">
-              <header className="fixed flex w-full z-50 p-xs px-lg">
-                <div className="flex ml-auto gap-md">
+              <header className="duration-500 fixed flex w-full z-50 p-xs px-lg">
+                <div className="flex ml-auto gap-md w-full">
+                  <NpSvg className="mr-auto" />
                   <Link className="text-xl hover:text-primary" href={"#"}>
                     skills.
                   </Link>
