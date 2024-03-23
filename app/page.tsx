@@ -75,19 +75,9 @@ export default function IndexPage() {
   return (
     <div className="flex flex-col">
       <section className="gap-y-md relative md:min-h-[62rem] flex items-center flex-col md:flex-row">
-        {/* <div className="z-10 absolute w-full h-full">
-          <Ball
-            className="absolute left-[50%] top-[38%]"
-            style={{ y: ySpeed1 }}
-          />
-          <Ball className="absolute left-[40%] top-[50%] bg-orange-300" />
-        </div> */}
         <Gradient1Svg className="absolute top-0 right-0 -z-10 size-[39rem]" />
 
         <Gradient2Svg className="absolute -z-10 bottom-0 size-[40rem]" />
-        {/* <RedSvg className="absolute bottom-0 right-1 -z-10" /> */}
-        {/* <BlueSvg className="absolute -z-10 -bottom-[28rem] right-60 size-[40rem]" /> */}
-        {/* <OrangeSvg className="absolute -z-10 -bottom-[10rem] right-[22rem] size-[40rem]" /> */}
         <div ref={container} className="p-lg h-full w-full relative z-10">
           <div className="relative px-md pt-md backdrop-blur-[60px] rounded-[3rem] bg-background/10 border-2 border-background">
             <div className="grid grid-cols-[1.5fr_1fr]">
