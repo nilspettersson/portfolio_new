@@ -36,7 +36,7 @@ $screen-xl: 1536px;
   }
 
   .dark {
-    --background: 40 4% 6%;
+    --background: 40 4% 10%;
     --foreground: 63 91% 100%;
     --card: 20 14.3% 4.1%;
     --card-foreground: 60 9.1% 97.8%;
@@ -62,6 +62,7 @@ $screen-xl: 1536px;
     --space-sm: 2rem;
     --space-md: 4rem;
     --space-lg: 8rem;
+    --space-xl: 16rem;
   }
 }
 

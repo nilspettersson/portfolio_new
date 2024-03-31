@@ -39,7 +39,7 @@ export default function IndexPage() {
   const section2Y = useTransform(values2.scrollYProgress, [0, 1], [0, -200])
   const section2Opacity = useTransform(
     values2.scrollYProgress,
-    [0, 0.5, 1],
+    [0, 0.3, 1],
     [0, 0, 1]
   )
 
@@ -152,15 +152,24 @@ export default function IndexPage() {
         className="grid grid-cols-[1fr_auto] items-center  dark bg-background py-lg pb-0"
       >
         <motion.div className="flex justify-between pb-[16rem]">
-          <motion.h1
-            style={{ x: 0, y: -200, opacity: section2Opacity }}
-            className="leading-none mt-auto text-foreground/20 text-[24rem] pl-lg"
-          >
-            skills.
-          </motion.h1>
+          <div className="flex flex-col justify-between">
+            <motion.h2
+              style={{ x: 0, y: -200, opacity: section2Opacity }}
+              className="ml-md pl-lg pt-xl whitespace-nowrap text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary"
+            >
+              3+ years of experience
+            </motion.h2>
+            <motion.h1
+              style={{ x: 0, y: -200, opacity: section2Opacity }}
+              className="leading-[0.7] mt-auto text-foreground/20 text-[22vw]"
+            >
+              skills.
+            </motion.h1>
+          </div>
+
           <motion.div
             style={{ y: section2Y }}
-            className="flex flex-col gap-xs text-foreground text-right pr-md"
+            className="flex flex-col gap-xs pt-xl text-foreground text-right pr-md"
           >
             <h2>HTML</h2>
             <h2>CSS</h2>

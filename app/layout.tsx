@@ -57,9 +57,9 @@ export default function RootLayout({ children }: RootLayoutProps) {
         >
           <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
             <div className="min-h-screen h-full">
-              <header className="duration-500 fixed flex w-full z-50 p-xs px-lg">
-                <div className="flex ml-auto gap-md w-full">
-                  <NpSvg className="mr-auto" />
+              <header className="duration-500 fixed flex items-center w-full z-50 p-1 px-lg">
+                <div className="flex items-center ml-auto gap-md w-full">
+                  <NpSvg className="mr-auto size-12" />
                   <Link className="text-xl hover:text-primary" href={"#"}>
                     skills.
                   </Link>
