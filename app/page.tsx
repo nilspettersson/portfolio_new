@@ -4,12 +4,11 @@ import React, { ReactNode, useEffect, useRef, useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import meImage from "@/public/illustration.webp"
+import project1 from "@/public/project1.webp"
+import projectBackground from "@/public/project-background.webp"
 import {
-  AnimatePresence,
   AnimationProps,
-  HTMLMotionProps,
   Variant,
-  Variants,
   motion,
   useScroll,
   useTransform,
@@ -17,6 +16,8 @@ import {
 import { Linkedin, MessageCircle, Phone } from "lucide-react"
 
 import { cn } from "@/lib/utils"
+import { Card, CardFooter } from "@/components/ui/card"
+import { Project } from "@/components/project"
 import {
   DownArrowSvg,
   Gradient1Svg,
@@ -74,7 +75,7 @@ export default function IndexPage() {
 
   return (
     <div className="flex flex-col">
-      <section className="gap-y-md relative md:min-h-[62rem] flex items-center flex-col md:flex-row">
+      <section className="gap-y-md relative md:min-h-[62rem] flex items-center flex-col md:flex-row overflow-hidden">
         <Gradient1Svg className="absolute top-0 right-0 -z-10 size-[39rem]" />
 
         <Gradient2Svg className="absolute -z-10 bottom-0 size-[40rem]" />
@@ -149,19 +150,19 @@ export default function IndexPage() {
       <motion.section
         ref={section2Container}
         id="section-2"
-        className="grid grid-cols-[1fr_auto] items-center  dark bg-background py-lg pb-0"
+        className="relative grid grid-cols-[1fr_auto] items-center dark bg-background py-lg pb-0 overflow-hidden"
       >
-        <motion.div className="flex justify-between pb-[16rem]">
+        <motion.div className="flex justify-between pb-0">
           <div className="flex flex-col justify-between">
             <motion.h2
               style={{ x: 0, y: -200, opacity: section2Opacity }}
-              className="ml-md pl-lg pt-xl whitespace-nowrap text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary"
+              className="ml-md pl-lg pt-64 whitespace-nowrap text-transparent w-fit bg-clip-text bg-gradient-to-r from-primary to-secondary"
             >
               3+ years of experience
             </motion.h2>
             <motion.h1
               style={{ x: 0, y: -200, opacity: section2Opacity }}
-              className="leading-[0.7] mt-auto text-foreground/20 text-[22vw]"
+              className="leading-[0.7] mt-auto text-foreground/20 text-[20vw]"
             >
               skills.
             </motion.h1>
@@ -169,7 +170,7 @@ export default function IndexPage() {
 
           <motion.div
             style={{ y: section2Y }}
-            className="flex flex-col gap-xs pt-xl text-foreground text-right pr-md"
+            className="flex flex-col gap-xs pt-64 text-foreground text-right pr-xl"
           >
             <h2>HTML</h2>
             <h2>CSS</h2>
@@ -184,14 +185,29 @@ export default function IndexPage() {
 
         <motion.div
           style={{ y: section2Y }}
-          className="bg-background border-2 border-foreground w-lg h-[68rem] rounded-l-[3rem]"
+          className="absolute right-0 -bottom-52 xl:-bottom-60 bg-background border-2 border-foreground w-lg h-[68rem] xl:h-[74rem] rounded-l-[3rem]"
+        />
+      </motion.section>
+
+      <motion.section className="py-lg grid lg:grid-cols-2 px-xl gap-lg">
+        <Project
+          className="lg:mb-lg"
+          image={project1}
+          title="Fall in love"
+          description="A home is a sanctuary filled with warmth and laughter..."
+        />
+        <Project
+          className="lg:mt-lg"
+          image={project1}
+          title="Some project"
+          description="This is next project"
         />
       </motion.section>
 
       <motion.section
         ref={section3Container}
         id="section-2"
-        className="flex flex-col items-center dark bg-background py-lg pt-0 overflow-hidden"
+        className="flex flex-col items-center dark bg-background py-lg overflow-hidden"
       >
         <motion.h1
           style={{ x: section3X1 }}
@@ -294,15 +310,3 @@ const animations = {
     hidden: { opacity: 0, translateY: "0px" },
   },
 } as const
-
-function Ball({ className, ...props }: HTMLMotionProps<"div">) {
-  return (
-    <motion.div
-      {...props}
-      className={cn(
-        "blur-2xl rounded-full size-64 bg-orange-400 mix-blend-soft-light opacity-80",
-        className
-      )}
-    />
-  )
-}

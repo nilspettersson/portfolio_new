@@ -62,7 +62,7 @@ $screen-xl: 1536px;
     --space-sm: 2rem;
     --space-md: 4rem;
     --space-lg: 8rem;
-    --space-xl: 16rem;
+    --space-xl: calc(var(--space-md) + var(--space-lg));
   }
 }
 
@@ -99,7 +99,7 @@ h2 {
 }
 h3 {
   font-size: 2.25rem;
-  font-weight: 400;
+  font-weight: 700;
 }
 h4 {
   font-size: 1.5rem;
@@ -115,15 +115,21 @@ p {
 
 @media (max-width: $screen-lg) {
   :root {
-    --space-sm: 2rem;
-    --space-md: 4rem;
-    --space-lg: 8rem;
+    --space-sm: 1.5rem;
+    --space-md: 2rem;
+    --space-lg: 4rem;
+  }
+  h2 {
+    font-size: 2rem;
+    font-weight: 700;
   }
 }
 
 @media (max-width: $screen-md) {
   :root {
-    --space-lg: 6rem;
+    --space-sm: 1rem;
+    --space-md: 1.5rem;
+    --space-lg: 3rem;
   }
   h1 {
     font-size: 4rem;
@@ -134,12 +140,13 @@ p {
 }
 
 @media (max-width: $screen-sm) {
-  :root {
+  /*:root {
     --space-xs: 0.6rem;
     --space-sm: 1rem;
     --space-md: 2rem;
     --space-lg: 6rem;
-  }
+    --space-xl: 10rem;
+  }*/
   h1 {
     font-size: 3rem;
   }
@@ -153,7 +160,7 @@ p {
 }
 @media (max-width: $screen-xs) {
   :root {
-    --space-lg: 6rem;
+    //--space-lg: 6rem;
   }
   h1 {
     font-size: 2.5rem;
