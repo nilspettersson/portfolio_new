@@ -35,7 +35,7 @@ export default function IndexPage() {
   const section2Container = useRef<HTMLDivElement>(null)
   const values2 = useScroll({
     target: section2Container,
-    offset: ["start end", "start start"],
+    offset: ["start end", "end end"],
   })
   const section2Y = useTransform(values2.scrollYProgress, [0, 1], [0, -200])
   const section2Opacity = useTransform(
@@ -76,16 +76,16 @@ export default function IndexPage() {
   return (
     <div className="flex flex-col">
       <section className="gap-y-md relative md:min-h-[62rem] flex items-center flex-col md:flex-row overflow-hidden">
-        <Gradient1Svg className="absolute top-0 right-0 -z-10 size-[39rem]" />
+        <Gradient1Svg className="absolute top-0 right-0 -z-10 size-[20rem] md:size-[39rem]" />
 
-        <Gradient2Svg className="absolute -z-10 bottom-0 size-[40rem]" />
+        <Gradient2Svg className="hidden md:block absolute -z-10 -bottom-48 -left-20 size-[40rem]" />
         <div ref={container} className="p-lg h-full w-full relative z-10">
           <div className="relative px-md pt-md backdrop-blur-[60px] rounded-[3rem] bg-background/10 border-2 border-background">
             <div className="grid grid-cols-[1.5fr_1fr]">
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                className="text-center md:text-left"
+                className="text-left"
               >
                 <h1>Nils Pettersson.</h1>
                 <h2 className="text-transparent w-fit bg-clip-text bg-gradient-to-r from-primary to-secondary">
@@ -150,13 +150,13 @@ export default function IndexPage() {
       <motion.section
         ref={section2Container}
         id="section-2"
-        className="relative grid grid-cols-[1fr_auto] items-center dark bg-background py-lg pb-0 overflow-hidden"
+        className="relative grid grid-cols-[1fr_auto] items-center dark bg-background py-16 pb-0"
       >
         <motion.div className="flex justify-between pb-0">
           <div className="flex flex-col justify-between">
             <motion.h2
               style={{ x: 0, y: -200, opacity: section2Opacity }}
-              className="ml-md pl-lg pt-64 whitespace-nowrap text-transparent w-fit bg-clip-text bg-gradient-to-r from-primary to-secondary"
+              className="ml-md pl-lg pt-64 sm:whitespace-nowrap text-transparent w-fit bg-clip-text bg-gradient-to-r from-primary to-secondary"
             >
               3+ years of experience
             </motion.h2>
@@ -172,24 +172,31 @@ export default function IndexPage() {
             style={{ y: section2Y }}
             className="flex flex-col gap-xs pt-64 text-foreground text-right pr-xl"
           >
-            <h2>HTML</h2>
-            <h2>CSS</h2>
-            <h2>TypeScript</h2>
-            <h2>Delphi</h2>
-            <h2>C#</h2>
-            <h2>C++</h2>
-            <h2>Java</h2>
-            <h2>SQL</h2>
+            <h3>HTML</h3>
+            <h3>CSS</h3>
+            <h3>TypeScript</h3>
+            <h3>Delphi</h3>
+            <h3>C#</h3>
+            <h3>C++</h3>
+            <h3>Java</h3>
+            <h3>SQL</h3>
           </motion.div>
         </motion.div>
 
         <motion.div
           style={{ y: section2Y }}
-          className="absolute right-0 -bottom-52 xl:-bottom-60 bg-background border-2 border-foreground w-lg h-[68rem] xl:h-[74rem] rounded-l-[3rem]"
+          className="absolute right-0 -bottom-48 xl:-bottom-60 bg-background border-2 border-foreground w-lg h-[46rem] md:h-[52rem] xl:h-[64rem] rounded-l-[3rem]"
         />
       </motion.section>
 
-      <motion.section className="py-lg grid lg:grid-cols-2 px-xl gap-lg">
+      <motion.section className="relative py-32 grid lg:grid-cols-2 px-xl gap-lg gap-y-16">
+        <div
+          className="absolute inset-0 w-full h-96 dark bg-background -z-10"
+          style={{
+            clipPath: "polygon(0% 0%,100% 0%, 100% 50%, 0% 100%)",
+            marginTop: "-1px",
+          }}
+        />
         <Project
           className="lg:mb-lg"
           image={project1}
@@ -207,7 +214,7 @@ export default function IndexPage() {
       <motion.section
         ref={section3Container}
         id="section-2"
-        className="flex flex-col items-center dark bg-background py-lg overflow-hidden"
+        className="flex flex-col items-center dark bg-background py-16 overflow-hidden"
       >
         <motion.h1
           style={{ x: section3X1 }}

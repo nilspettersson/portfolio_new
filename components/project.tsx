@@ -19,7 +19,7 @@ export function Project({
   return (
     <div className={cn("relative", className)}>
       <Image
-        className="absolute inset-0 h-full rounded-[2rem] -translate-x-8 -translate-y-8"
+        className="absolute inset-0 h-full rounded-[2rem] -translate-x-4 -translate-y-4 md:-translate-x-8 md:-translate-y-8"
         alt="image"
         src={projectBackground}
         width={1200}
@@ -39,7 +39,7 @@ export function Project({
             objectFit: "cover",
           }}
         />
-        <CardFooter className="absolute bottom-0 z-10 p-sm pt-sm flex flex-col items-start gap-xs w-full backdrop-blur-[20px] bg-background/10 border-2 border-background">
+        <CardFooter className="absolute bottom-0 z-10 p-sm pt-sm flex flex-col items-start rounded-b-[2rem] gap-xs w-full backdrop-blur-[20px] bg-background/10 border-2 border-muted">
           <h3>{title}</h3>
           <p>{description}</p>
         </CardFooter>

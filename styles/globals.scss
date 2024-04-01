@@ -123,6 +123,10 @@ p {
     font-size: 2rem;
     font-weight: 700;
   }
+  h3 {
+    font-size: 1.75rem;
+    font-weight: 700;
+  }
 }
 
 @media (max-width: $screen-md) {
@@ -140,18 +144,22 @@ p {
 }
 
 @media (max-width: $screen-sm) {
-  /*:root {
-    --space-xs: 0.6rem;
-    --space-sm: 1rem;
-    --space-md: 2rem;
-    --space-lg: 6rem;
-    --space-xl: 10rem;
-  }*/
+  :root {
+    --space-xs: 0.25rem;
+    --space-sm: 0.75rem;
+    --space-md: 1rem;
+    --space-lg: 2rem;
+  }
   h1 {
-    font-size: 3rem;
+    font-size: 2rem;
   }
   h2 {
-    font-size: 2rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+  h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
   }
 
   p {
@@ -161,12 +169,6 @@ p {
 @media (max-width: $screen-xs) {
   :root {
     //--space-lg: 6rem;
-  }
-  h1 {
-    font-size: 2.5rem;
-  }
-  h2 {
-    font-size: 1.5rem;
   }
 }
 
