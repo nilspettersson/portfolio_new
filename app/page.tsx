@@ -52,7 +52,7 @@ export default function IndexPage() {
 
   const section3X1 = useTransform(values3.scrollYProgress, [0, 1], [-100, 100])
   const section3X2 = useTransform(values3.scrollYProgress, [0, 1], [100, -100])
-  const section3X3 = useTransform(values3.scrollYProgress, [0, 1], [-100, 100])
+  const section3X3 = useTransform(values3.scrollYProgress, [0, 1], [-100, 300])
 
   useEffect(() => {
     let addedBackground = false
@@ -197,18 +197,20 @@ export default function IndexPage() {
             marginTop: "-1px",
           }}
         />
-        <Project
-          className="lg:mb-lg"
-          image={project1}
-          title="Fall in love"
-          description="A home is a sanctuary filled with warmth and laughter..."
-        />
-        <Project
-          className="lg:mt-lg"
-          image={project1}
-          title="Some project"
-          description="This is next project"
-        />
+        <div className="grid col-span-2 2xl:grid-cols-2 p-20 gap-lg gap-y-16">
+          <Project
+            className="lg:mb-lg"
+            image={project1}
+            title="Fall in love"
+            description="A home is a sanctuary filled with warmth and laughter..."
+          />
+          <Project
+            className="lg:mt-lg"
+            image={project1}
+            title="Some project"
+            description="This is next project"
+          />
+        </div>
       </motion.section>
 
       <motion.section

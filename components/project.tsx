@@ -1,8 +1,10 @@
 import Image, { StaticImageData } from "next/image"
 import projectBackground from "@/public/project-background.webp"
+import { ArrowUpRight, ExternalLink } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 
+import { Button } from "./ui/button"
 import { Card, CardFooter } from "./ui/card"
 
 export function Project({
@@ -39,9 +41,18 @@ export function Project({
             objectFit: "cover",
           }}
         />
-        <CardFooter className="absolute bottom-0 z-10 p-sm pt-sm flex flex-col items-start rounded-b-[2rem] gap-xs w-full backdrop-blur-[20px] bg-background/10 border-2 border-muted">
-          <h3>{title}</h3>
-          <p>{description}</p>
+        <CardFooter className="absolute bottom-0 z-10 p-8 pt-8 flex items-end rounded-b-[2rem] gap-xs w-full backdrop-blur-[12px] bg-background/40 border-2 border-muted">
+          <div className="grow w-full">
+            <h3>{title}</h3>
+            <p>{description}</p>
+          </div>
+          <Button
+            variant={"ghost"}
+            size={"icon"}
+            className="shrink-0 grow hover:bg-transparent hover:text-green-700 text-muted-foreground"
+          >
+            <ArrowUpRight className={"size-16 shrink-0 "} />
+          </Button>
         </CardFooter>
       </Card>
     </div>
